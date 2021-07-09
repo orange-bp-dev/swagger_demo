@@ -8,7 +8,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './task.entity';
 import { TaskRepository } from './task.repository';
 import { Cache } from 'cache-manager';
-import axios from 'axios';
 
 @Injectable()
 export class TaskService {
@@ -28,7 +27,7 @@ export class TaskService {
       if (!found) {
         throw new NotFoundException(`Task with ID ${id} no found`);
       }
-      await this.cacheManager.set('task', found, { ttl: 3600 });
+      await this.cacheManager.set('task', found, { ttl: 5 });
       return found;
     }
     // return found;
