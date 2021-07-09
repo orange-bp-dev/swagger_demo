@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
+import { TaskModule } from '../task/task.module';
 
 @Module({
   imports: [
@@ -18,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
       entities: ['dist/**/*.entity.js'],
       synchronize: false,
     }),
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
